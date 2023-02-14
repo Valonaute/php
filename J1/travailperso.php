@@ -6,12 +6,13 @@ avec des commentaires long en format HTML car Territoire HTML ici -->
 
 $firstname = "Valentin" ;
 $name = "Gautier" ;
-
+$age = 31 ;
 /* J'affiche le prénom puis le nom 
 commentaire sur plusieurs ligne en territoire PHP */
 
 echo "Je m'appelle $firstname $name" ;
-
+echo "<br>" ;
+echo "j'ai ".$age." ans";
 
 
 
