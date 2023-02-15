@@ -7,3 +7,7 @@ $nom = "Gautier";
 
 echo 'Mon nom est '.$nom.'<br>';
 echo "Mon nom est $nom";
+
+// j'aime le vélo 
+// L'antislash permet d'ajouter "faire un échappement" lorsque vous avez des apostrophes 
+echo 'j\'aime le vélo et j\'habite à Paris' ;
