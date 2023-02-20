@@ -1,15 +1,14 @@
 <?php
 session_start();
 session_destroy();
-if (isset($_SESSION['key'])){
-    echo "Vous êtes toujours connecté";
-} else { 
-    echo"Vous n'êtes plus connecté ";
-}
+header('Location: connexion.php');
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,11 +16,17 @@ if (isset($_SESSION['key'])){
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-<a href="connexion.php">Connexion</a>
-
-<a href="index.php">Accueil</a>
-
-<a href="compte1.php">compte 1</a>
+    <br>
+    <a href="connexion.php">Connexion</a>
+    <br>
+    <a href="deconnexion.php">DeConnexion</a>
+    <br>
+    <a href="index.php">Accueil</a>
+    <br>
+    <a href="compte1.php">compte 1</a>
+    <br>
 </body>
+
 </html>

@@ -65,8 +65,8 @@ if(strlen($_POST['code_postal'])>5){
     if ($pdf_size > 2000000){
         $errors[] = "Le fichier est trop volumineux, ne pas dépasser 2 MO.";
     }
-    if (!in_array($extensionsautorisees,$ext_pdf)){
-        $errors[]= "Vous pouvez uploader uniquemet des fichiers PDF"
+    if (!in_array($ext_pdf,$extensionsautorisees)){
+        $errors[]= "Vous pouvez uploader uniquemet des fichiers PDF";
     }
 
     if ($errors <1){
@@ -74,7 +74,7 @@ if(strlen($_POST['code_postal'])>5){
         move_uploaded_file($dossiertemporaire, $dossierdestination);
     } else {
         foreach ($errors as $error){
-            echo "<p style='color:red;'>.$error.</p>"
+            echo "<p style='color:red;'>.$error.</p>";
         }
     }
 
