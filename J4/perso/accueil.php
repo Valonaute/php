@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    if($_SESSION["key"] !== $_GET["mdp"]){
+        session_destroy();
+        header('Location: index.php');
+    } else {
+        echo "C'est ok la clé est enregistrée, le mot de passe est le bon";
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,15 +20,14 @@
     <title>Document</title>
 </head>
 
-<body>
-
+<body style=background-color:black;>
     <?php include 'includes/header.php' ?>
 
 
-    <p>Bravo tu as gagné !</p>
+    <p style=color:green;>Bravo tu as gagné tu es connecté !</p>
 
 
-    <img src="upload/nouvelan.jpg" height="500px">
+    <img src="upload/nouvelan.jpg" height="350px">
 
 
     <?php include 'includes/footer.php' ?>
