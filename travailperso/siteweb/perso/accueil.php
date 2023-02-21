@@ -1,11 +1,11 @@
 <?php
     session_start();
-    if($_SESSION["key"] !== $_GET["mdp"]){
-        session_destroy();
-        header('Location: index.php');
-    } else {
-        echo "C'est ok la clé est enregistrée, le mot de passe est le bon";
-    }
+    // if($_SESSION["key"] !== $_GET["mdp"]){
+    //     session_destroy();
+    //     header('Location: index.php');
+    // } else {
+    //     echo "C'est ok la clé est enregistrée, le mot de passe est le bon";
+    // }
     
 ?>
 

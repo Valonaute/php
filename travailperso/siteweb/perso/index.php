@@ -1,3 +1,14 @@
+<?php
+if (!empty($_GET)){
+    if ($_GET['mdp'] == '04122022' OR $_GET['mdp'] == 'coteauxdulayon'){
+        header('Location: accueil.php');
+    } else {
+        header('location: index.php');
+        echo "Mot de passe incorrect, réessayez !";
+    }
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,6 +23,8 @@
 <body>
 <?php include 'includes/header.php'?>
 <br><br>
+<h4> D'abord tu dois montrer patte blanche. Quel est le mot de passe pour rentrer ? :) </h4>
+<br>
 <form action="accueil.php" method="get">
 <fieldset>
     <legend> Le Mot de Passe SVP : </legend>
