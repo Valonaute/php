@@ -1,3 +1,25 @@
+<?php
+
+if (!$empty($_POST)) {
+    // Vérifier si les hcamps sont vides 
+    $errors = [];
+
+
+
+if(strlen($_POST['code_postal'])>5){
+    $errors[]= "Les code postal est trop long";
+}
+
+    if (count($errors) < 1) {
+        // Insérer dans la base de données 
+    }
+}
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,14 +54,38 @@
 
     $pdf = $_FILES['file']['name'];
     $ext_pdf = strrchr($pdf, '.');
+    $extensionsautorisees = [".pdf",".PDF"];
     $pdf_size = $_FILES['file']['size'];
-   
-    // Vérification et traitement des erreurs
+    $dossiertemporaire = $_FILES["file"]['tmp'];
+    $dossierdestination = "upload/".$pdf;
     
+    // Gestion des erreurs
+    
+    $errors = [];
+    if ($pdf_size > 2000000){
+        $errors[] = "Le fichier est trop volumineux, ne pas dépasser 2 MO.";
+    }
+    if (!in_array($ext_pdf,$extensionsautorisees)){
+        $errors[]= "Vous pouvez uploader uniquemet des fichiers PDF";
+    }
+
+    if ($errors <1){
+        // on déplace le fichier ! 
+        move_uploaded_file($dossiertemporaire, $dossierdestination);
+    } else {
+        foreach ($errors as $error){
+            echo "<p style='color:red;'>.$error.</p>";
+        }
+    }
+
+
+
+// Vérification et traitement des erreurs
+
     //$empty = "Vous n'avez rien envoyer";
     //if (!isset($_POST['Envoyer'])) {
     //     $empty;}
-    
+/*
     if (empty($_FILES)) {
         echo "Vous n'avez pas choisi de fichier ...";
     } elseif ($pdf_size > 2000000) {
@@ -49,6 +95,7 @@
     } else {
         echo "<br><br>Le fichier a bien été uploadé. Merci" . "<br><br>";
     };
+*/
 
     ?>
 

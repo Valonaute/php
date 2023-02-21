@@ -160,7 +160,8 @@
             <br>
             <label for="code_postal"> Code Postal </label>
             <br>
-            <input type="number" name="code_postal" id="code_postal" placeholder="75001">
+            <input pattern="[0-9]{5}" type="text"  name="code_postal" placeholder="ex : 37000"/>
+
             <br>
             <label for="ville"> Ville </label>
             <br>
