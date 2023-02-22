@@ -1,6 +1,3 @@
-<?php
-require 'config/connexion.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +12,7 @@ require 'config/connexion.php';
     <!----------------- Début de la nav ----------------->
     <div id="nav">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="assets/img/logo/leo-michael-logo.jpg">
+        <img src="/projet/assets/img/logo/leo-michael-logo.jpg">
         <button
           class="navbar-toggler"
           type="button"

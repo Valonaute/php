@@ -1,4 +1,5 @@
 <?php
+require 'config/connexion.php';
 // Require permet d'inclure un fichier 
 require 'includes/header.php';
 ?>
