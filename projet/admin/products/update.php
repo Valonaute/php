@@ -8,10 +8,37 @@ $product = $requete->fetch(PDO::FETCH_ASSOC);
 
 $requete1 = $pdo->query("SELECT * FROM category");
 $categories = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+if(!empty($_POST)){
+    $errors = [];
+    if(empty($_POST['nom'])){
+        $errors [] = 'Le nom ne doit pas être vide';
+    } 
+
+    if(empty($_POST['description'])){
+        $errors [] = 'La description ne doit pas être vide';
+    } 
+
+    if(empty($_POST['price'])){
+        $errors [] = 'Le Prix ne doit pas être vide';
+    } 
+
+
+
+    if (count($errors)<1){
+        $pdo->prepare("UPDATE products SET name = ?, description = ?, price = ? WHERE id_product = ?")->execute([$_POST['nom'], $_POST['description'], $_POST['price'], $_GET['id_product']]);
+        echo "<p class='alert-success'> La catégorie a bien été modifiée ! </p>";
+    } else {
+        foreach ($errors as $error){
+            echo "<p class='btn-danger'>".$error."</p>";
+        }
+    }
+}
+
 ?>
 
 <div id="content" >
-    <form action="" method="post" enctype="multipart/form-data" class="form" style="padding-left: 200px;">
+    <form action="<?= $_SERVER['PHP_SELF'].'?id_product='.$_GET['id_product']; ?>" method="post" enctype="multipart/form-data" class="form" style="padding-left: 200px;">
         <fieldset>
             <legend> Création de Produit </legend>
             <br>
@@ -36,7 +63,7 @@ $categories = $requete->fetchAll(PDO::FETCH_ASSOC);
                 <?php //} ?>
             </select>
             <br>
-            <input type="submit" value="Créer">
+            <input type="submit" value="Modifier">
             <br>
         </fieldset>
     </form>

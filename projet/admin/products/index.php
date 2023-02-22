@@ -53,7 +53,7 @@ $products = $requete->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
         <?php }
         } else {
-            echo "<h3 class='alert-danger' style='text-align:center;'>Il n'y a pas de catégorie pour l'instant </h3>";
+            echo "<h3 class='alert-danger' style='text-align:center;'>Il n'y a pas de produits pour l'instant </h3>";
         } ?>
         </tbody>
     </table>

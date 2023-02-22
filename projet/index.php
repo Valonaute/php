@@ -2,6 +2,11 @@
 require 'config/connexion.php';
 // Require permet d'inclure un fichier 
 require 'includes/header.php';
+
+$requete = $pdo->query("SELECT * FROM products");
+$products = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
 <!------------------------Début du Carousel ---------------------->
@@ -80,80 +85,24 @@ require 'includes/header.php';
     <div class="row">
         <div class="col-12">
             <br />
-            <h2 class="d-flex justify-content-center pt-5">Popular products</h2>
+            <h2 class="d-flex justify-content-center pt-5">Vous retrouvez ici nos produits populaires : </h2>
             <br />
             <p class="d-flex justify-content-center">
-                Voici mesproduits populaires ! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Odit eum maxime, cumque quae similique
-                magni tempora.
+                Ce sont nos meilleurs ventes, nos coups de coeur qui pourraient également vous plaire !
             </p>
         </div>
-        <div class="card col-12 col-sm-4 col-md-4 col-lg-4" style="width: 18rem">
-            <img src="assets/img/produits/lun1.jpg" class="card-img-top" alt="..." />
+        <?php
+        foreach (array_slice($products, 0, 6) as $product) { ?> 
+            
+            <div class="card col-12 col-sm-4 col-md-4 col-lg-4" style="width: 18rem">
+            <img src="uploads/<?= $product['image'] ?>" class="card-img-top">
             <div class="card-body">
-                <h5 class="card-title">Des supers rayban !</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
+                <h5 class="card-title"><?= $product['name']?></h5>
+                <p class="card-text"><?= $product['description']?></p>
                 <a href="#" class="btn btn-primary">Mettre dans mon panier</a>
             </div>
         </div>
-        <div class="card col-12 col-sm-4 col-md-4 col-lg-4" style="width: 18rem">
-            <img src="assets/img/produits/lun2.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">Des supers rayban !</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Mettre dans mon panier</a>
-            </div>
-        </div>
-        <div class="card col-12 col-sm-4 col-md-4 col-lg-4" style="width: 18rem">
-            <img src="assets/img/produits/lun3.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">Des supers rayban !</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Mettre dans mon panier</a>
-            </div>
-        </div>
-        <div class="card col-12 col-sm-4 col-md-4 col-lg-4" style="width: 18rem">
-            <img src="assets/img/produits/lun4.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">Des supers rayban !</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Mettre dans mon panier</a>
-            </div>
-        </div>
-        <div class="card col-12 col-sm-4 col-md-4 col-lg-4" style="width: 18rem">
-            <img src="assets/img/produits/lun5.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">Des supers rayban !</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Mettre dans mon panier</a>
-            </div>
-        </div>
-        <div class="card col-12 col-sm-4 col-md-4 col-lg-4" style="width: 18rem">
-            <img src="assets/img/produits/lun6.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">Des supers rayban !</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Mettre dans mon panier</a>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
 <!-- ------------- Fin du bloc des produits populaires ----------->
@@ -161,8 +110,8 @@ require 'includes/header.php';
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">
-            <h2 class="d-flex justify-content-center">Blog</h2>
-            <p class="d-flex justify-content-center">Nos articles du moment !</p>
+            <h2 class="d-flex justify-content-center"> Notre Blog</h2>
+            <p class="d-flex justify-content-center">Nos derniers articles du moment !</p>
         </div>
 
         <div class="card-group">
