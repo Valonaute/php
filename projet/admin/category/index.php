@@ -23,10 +23,10 @@ $categories = $requete->fetchAll(PDO::FETCH_ASSOC);
                     <th scope="row"><?php echo $category['id_category']; ?></th>
                     <td><?php echo $category['nom']; ?></td>
                     <td>
-                    <a href="update.php?id_category=<?php echo $category['id_category']; ?>" class="btn btn-warning">Modifier</a>
+                    <a href="update.php?id_category=<?= $category['id_category']; ?>" class="btn btn-warning">Modifier</a>
                     </td>
                     <td>
-                    <a href="delete.php?id_category=<?php echo $category['id_category']; ?>" class="btn btn-danger">Supprimer</a>
+                    <a href="delete.php?id_category=<?= $category['id_category']; ?>" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
 

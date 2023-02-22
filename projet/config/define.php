@@ -14,5 +14,5 @@ define('INCLUDES_PATH', $root.'/projet/includes/');
 
 define('IMG_PATH', $root.'/projet/assets/img/');
 
-
+define('UPLOAD_PATH', $root.'/projet/upload/');
 ?>
