@@ -9,6 +9,14 @@
     <title>accueil</title>
   </head>
   <body>
+<?php
+$requete = $pdo->query("SELECT * FROM category");
+$categories = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+
+
     <!----------------- Début de la nav ----------------->
     <div id="nav">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,18 +35,24 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#"
-                > Accueil <span class="sr-only">(current)</span></a
+              <a class="nav-link" href="/php/projet/index.php"> Accueil</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Produits </a>
+              <a class="nav-link" href="/php/projet/admin/products/index.php">Produits </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Prix</a>
+              <a class="nav-link" href="/php/projet/admin/category/index.php">Categories</a>
+
+              <?php foreach($categories as $category){ ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="/php/projet/admin/category/index.php"><?= $category['nom']; ?> </a>
+                </li>
+
+              <?php } ?>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled"> Contact</a>
+              <a class="nav-link" href="#"> Contact</a>
             </li>
           </ul>
         </div>

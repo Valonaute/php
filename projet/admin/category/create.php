@@ -6,7 +6,7 @@ if(!empty($_POST)){
     if(empty($_POST['nom'])){
         $errors[] = 'Le nom est vide';
     }
-    if(!ctype_alpha($_POST['nom'])){
+    if(!is_string($_POST['nom'])){
         $errors[] = "Le nom de la catégorie n'est pas alphanumérique";
     }
 
