@@ -6,55 +6,38 @@ require 'includes/header.php';
 $requete = $pdo->query("SELECT * FROM products");
 $products = $requete->fetchAll(PDO::FETCH_ASSOC);
 
+$requete2 = $pdo->query("SELECT * FROM carousel");
+$slides = $requete2->fetchAll(PDO::FETCH_ASSOC);
+
+$requete3 = $pdo->query("SELECT * FROM blog");
+$articles = $requete3->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<!------------------------Début du Carousel ---------------------->
-<div id="carousel">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" style="color: black ;">
-            <div class="carousel-item active">
-                <img src="assets/img/slider/slide2.jpg" height="900px" width="500px" class="d-block w-100" alt="..." />
-                <div class="carousel-caption d-none d-md-block" style="color: black ;">
-                    <h5>First slide label</h5>
-                    <p>
-                        Some representative placeholder content for the first slide.
-                    </p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="assets/img/slider/slide1.jpg" height="900px" width="500px" class="d-block w-100" alt="..." />
-                <div class="carousel-caption d-none d-md-block" style="color: black ;">
-                    <h5>Second slide label</h5>
-                    <p>
-                        Some representative placeholder content for the second slide.
-                    </p>
-                </div>
-            </div>
-            <!-- <div class="carousel-item">
-            <img src="assets/img/produits/sunglasses.jpg" height="500px" width="500px"class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Some representative placeholder content for the third slide.</p>
-            </div>
-          </div> -->
-        </div>
-        <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev" style="color: black ;">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next" style="color: black ;">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </button>
+<!--------------------Début du carrousselle à la main--------------->
+<br>
+<div class="carrousselle">
+    <div class="carrousselle-container">
+        <?php foreach ($slides as $slide){ ?>
+        <div class="carrousselle-item">
+            <img src="uploads/<?= $slide['image'] ?>" alt="<?= $slide['titre'] ?>">
+            <p class="p-carrousselle"><?= $slide['description'] ?></p>
+        </div> <?php } ?>
+        <!-- <div class="carrousselle-item">
+            <p class="p-carrousselle"> </p>
+            <img src="assets/img/slider/slide2.jpg" alt="Image 2">
+        </div> -->
     </div>
+    <button class="carrousselle-prev">&#8249;</button>
+    <button class="carrousselle-next">&#8250;</button>
 </div>
-<!------------------------ Fin du carousel ----------------------->
+
+<br>
+
+
+
+
+<!------------------------ Fin du carrousselle ----------------------->
 <!-- ------------- Début du bloc de catégorie en image ----------->
 <div class="container-fluid mt-5">
     <div class="row">
@@ -92,16 +75,15 @@ $products = $requete->fetchAll(PDO::FETCH_ASSOC);
             </p>
         </div>
         <?php
-        foreach (array_slice($products, 0, 6) as $product) { ?> 
-            
+        foreach (array_slice($products, 0, 9) as $product) { ?>
             <div class="card col-12 col-sm-4 col-md-4 col-lg-4" style="width: 18rem">
-            <img src="uploads/<?= $product['image'] ?>" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title"><?= $product['name']?></h5>
-                <p class="card-text"><?= $product['description']?></p>
-                <a href="#" class="btn btn-primary">Mettre dans mon panier</a>
+                <img src="<?= UPLOAD_PATH ?><?= $product['image'] ?>" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $product['name'] ?></h5>
+                    <p class="card-text"><?= $product['description'] ?></p>
+                    <a href="#" class="btn btn-primary">Acheter  a <?= $product['price'] ?> euros </a>
+                </div>
             </div>
-        </div>
         <?php } ?>
     </div>
 </div>
@@ -113,49 +95,20 @@ $products = $requete->fetchAll(PDO::FETCH_ASSOC);
             <h2 class="d-flex justify-content-center"> Notre Blog</h2>
             <p class="d-flex justify-content-center">Nos derniers articles du moment !</p>
         </div>
-
         <div class="card-group">
-            <div class="card">
-                <img src="assets/img/blog/blog1.jpg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                        This is a wider card with supporting text below as a natural
-                        lead-in to additional content. This content is a little bit
-                        longer.
-                    </p>
-                    <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </p>
+            <?php foreach (array_slice($articles, 0, 6) as $article) { ?>
+                <div class="card">
+                    <img src="<?= UPLOAD_PATH?><?= $article['image'] ?>" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $article['titre'] ?></h5>
+                        <p class="card-text"><?= $article['description'] ?>
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted"> Mis à jour le 23 Février 2023 </small>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <img src="assets/img/blog/blog2.jpg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                        This card has supporting text below as a natural lead-in to
-                        additional content.
-                    </p>
-                    <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/img/blog/blog3.jpg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                        This is a wider card with supporting text below as a natural
-                        lead-in to additional content. This card has even longer content
-                        than the first to show that equal height action.
-                    </p>
-                    <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </p>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

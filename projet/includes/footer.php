@@ -38,11 +38,29 @@
     </div>
     <img src="<?= IMG_PATH ?>/social footer/footer.jpg"> 
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
+    <script>
+// Création dynamisme carousel à la main : 
+      const carrousselle = document.querySelector('.carrousselle');
+const container = carrousselle.querySelector('.carrousselle-container');
+const prevBtn = carrousselle.querySelector('.carrousselle-prev');
+const nextBtn = carrousselle.querySelector('.carrousselle-next');
+const items = carrousselle.querySelectorAll('.carrousselle-item');
+let currentIndex = 0;
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+  updatecarrousselle();
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+  updatecarrousselle();
+});
+// Modification fonction "count' pour 3 car ca marchais pas 
+function updatecarrousselle() {
+  container.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
+}
+    </script>
     <script src=" <?= JS_PATH ?>bootstrap.js"></script>
   </body>
 </html>

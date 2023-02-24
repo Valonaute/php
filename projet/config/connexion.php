@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'define.php';
 require 'global.php';
 
